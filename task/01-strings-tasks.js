@@ -266,7 +266,11 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-    throw new Error('Not implemented');
+    /*if (typeof value == 'string') {
+      return true;
+    } else {
+      return false;
+    }*/
 }
 
 
@@ -295,7 +299,48 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    throw new Error('Not implemented');
+    var s = '';
+    for (var i = 1; i < 10; i++) {
+        s = s + String.fromCharCode('1F0D' + i);
+    }
+
+    s = s + String.fromCharCode('1F0DA');
+    s = s + String.fromCharCode('1F0DB');
+    s = s + String.fromCharCode('1F0DC');
+    s = s + String.fromCharCode('1F0DD');
+    s = s + String.fromCharCode('1F0DE');
+
+    for (var i = 1; i < 10; i++) {
+        s = s + String.fromCharCode('1F0C' + i);
+    }
+
+    s = s + String.fromCharCode('1F0CA');
+    s = s + String.fromCharCode('1F0CB');
+    s = s + String.fromCharCode('1F0CC');
+    s = s + String.fromCharCode('1F0CD');
+    s = s + String.fromCharCode('1F0CE');
+
+    for (var i = 1; i < 10; i++) {
+        s = s + String.fromCharCode('1F0F' + i);
+    }
+
+    s = s + String.fromCharCode('1F0FA');
+    s = s + String.fromCharCode('1F0FB');
+    s = s + String.fromCharCode('1F0FC');
+    s = s + String.fromCharCode('1F0FD');
+    s = s + String.fromCharCode('1F0FE');
+
+    for (var i = 1; i < 10; i++) {
+        s = s + String.fromCharCode('1F0A' + i);
+    }
+
+    s = s + String.fromCharCode('1F0AA');
+    s = s + String.fromCharCode('1F0AB');
+    s = s + String.fromCharCode('1F0AC');
+    s = s + String.fromCharCode('1F0AD');
+    s = s + String.fromCharCode('1F0AE');
+
+    return s.indexOf(value);
 }
 
 
