@@ -61,11 +61,7 @@ function generateOdds(len) {
  *    [] => []
  */
 function doubleArray(arr) {
-  var l = arr.length;
-  arr.length = arr.length * 2;
-  arr.copyWithin(l, 0, l);
-  return arr;
-   //return arr.concat(arr);
+   return arr.concat(arr);
 }
 
 
