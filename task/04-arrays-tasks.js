@@ -41,11 +41,9 @@ function generateOdds(len) {
    function deleteEvenNumbers(value) {
      return value % 2 !== 0 && value !== 0;
    }
-
    var arr = new Array(2 * len);
    var iteratorArr = [...arr.keys()];
-   var filteredArr = iteratorArr.filter(deleteEvenNumbers);
-   return filteredArr;
+   return iteratorArr.filter(deleteEvenNumbers);
 }
 
 
@@ -77,7 +75,10 @@ function doubleArray(arr) {
  *    [] => []
  */
 function getArrayOfPositives(arr) {
-   throw new Error('Not implemented');
+   function deleteNegativeNumber(value) {
+     return value > 0;
+   }
+   return arr.filter(deleteNegativeNumber);
 }
 
 /**
@@ -92,7 +93,10 @@ function getArrayOfPositives(arr) {
  *    [ 'cat, 'dog', 'raccon' ] => [ 'cat', 'dog', 'racoon' ]
  */
 function getArrayOfStrings(arr) {
-   throw new Error('Not implemented');
+   function leaveString(value) {
+     return typeof value === 'string';
+   }
+   return arr.filter(leaveString);
 }
 
 /**
@@ -109,7 +113,10 @@ function getArrayOfStrings(arr) {
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
 function removeFalsyValues(arr) {
-   throw new Error('Not implemented');
+   function deleteFalse(value) {
+     return Boolean(value);
+   };
+   return arr.filter(deleteFalse);
 }
 
 /**
@@ -123,7 +130,10 @@ function removeFalsyValues(arr) {
  *    [ 'a', 'b', 'c', 'd', 'e', 'f', 'g' ]  => [ 'A', 'B', 'C', 'D', 'E', 'F', 'G' ]
  */
 function getUpperCaseStrings(arr) {
-   throw new Error('Not implemented');
+   function upperString(value) {
+     return value.toString().toUpperCase();
+   }
+   return arr.map(upperString);
 }
 
 
@@ -138,7 +148,10 @@ function getUpperCaseStrings(arr) {
  *    [ 'angular', 'react', 'ember' ] => [ 7, 5, 5 ]
  */
 function getStringsLength(arr) {
-   throw new Error('Not implemented');
+   function strLength(value) {
+     return value.length;
+   }
+   return arr.map(strLength);
 }
 
 /**
