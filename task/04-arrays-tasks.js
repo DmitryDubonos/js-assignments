@@ -276,7 +276,9 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-   throw new Error('Not implemented');
+   return arr.filter(function(value) {
+     return arr.indexOf(value) % 2 !== 0;
+   });
 }
 
 
@@ -295,7 +297,24 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-   throw new Error('Not implemented');
+   var newLength = 0;
+   var subArr = [];
+   //subArr.push(2);
+   if (arr.length > 0) {
+     //subArr.push(2);
+     /*newLength = arr.reduce(function(prev, curr, index) {
+       return newLength + index;
+     });*/
+     //subArr.length = newLength;
+     var result = arr.reduce(function(prev, curr, index) {
+       //subArr.concat(arr.fill(curr, 0, index));
+       subArr.push(2);
+       return subArr;
+     });
+     return result;
+   } else {
+     return subArr;
+   }
 }
 
 
