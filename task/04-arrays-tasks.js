@@ -297,21 +297,18 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-   var newLength = 0;
-   var subArr = [];
-   //subArr.push(2);
-   if (arr.length > 0) {
-     //subArr.push(2);
-     /*newLength = arr.reduce(function(prev, curr, index) {
-       return newLength + index;
-     });*/
-     //subArr.length = newLength;
-     var result = arr.reduce(function(prev, curr, index) {
-       //subArr.concat(arr.fill(curr, 0, index));
-       subArr.push(2);
-       return subArr;
-     });
-     return result;
+  var newLength = 0;
+  var subArr = [];
+  if (arr.length > 0) {
+    var oldLength = 0;
+    var result = arr.reduce(function(prev, curr, index, array) {
+      newLength = newLength + index + 1;
+      subArr.length = newLength;
+      subArr.fill(array[index], oldLength, newLength);
+      oldLength = newLength;
+      return subArr;
+    }, arr[0]);
+    return result;
    } else {
      return subArr;
    }
