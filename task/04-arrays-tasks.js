@@ -529,8 +529,16 @@ function getIdentityMatrix(n) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(start, end) {
-   var index = 0;
+   var index = start;
    var arr = new Array(end - start + 1);
+   arr.fill(4);
+   return arr.map(function(value) {
+     if (index <= end) {
+       value = index;
+       index = index + 1;
+       return value;
+     }
+   });
 }
 
 /**
@@ -545,7 +553,16 @@ function getIntervalArray(start, end) {
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
 function distinct(arr) {
-   throw new Error('Not implemented');
+   var subArr = [];
+   arr.sort(function(a, b) {
+     return a - b;
+   });
+   return arr.reduce(function(prev, curr, index) {
+     if (curr !== arr[index - 1]) {
+       subArr.push(curr);
+     }
+     return subArr;
+   }, arr[0]);
 }
 
 /**
