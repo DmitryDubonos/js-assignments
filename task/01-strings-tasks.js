@@ -266,11 +266,11 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-    /*if (typeof value == 'string') {
+    if (typeof value == 'string' || value instanceof String) {
       return true;
     } else {
       return false;
-    }*/
+    }
 }
 
 
@@ -299,48 +299,67 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    var s = '';
-    for (var i = 1; i < 10; i++) {
-        s = s + String.fromCharCode('1F0D' + i);
-    }
+  var s = '';
+  var result;
+  var indexCount = 0;
 
-    s = s + String.fromCharCode('1F0DA');
-    s = s + String.fromCharCode('1F0DB');
-    s = s + String.fromCharCode('1F0DC');
-    s = s + String.fromCharCode('1F0DD');
-    s = s + String.fromCharCode('1F0DE');
+  s = s + 'A♣|' + indexCount +' ';
+  indexCount++;
+  for (var i = 2; i <= 10; i++) {
+      s = s + i + '♣|' + indexCount +' ';
+      indexCount++;
+  }
+  s = s + 'J♣|' + indexCount +' ';
+  indexCount++;
+  s = s + 'Q♣|' + indexCount +' ';
+  indexCount++;
+  s = s + 'K♣|' + indexCount +' ';
+  indexCount++;
 
-    for (var i = 1; i < 10; i++) {
-        s = s + String.fromCharCode('1F0C' + i);
-    }
+  s = s + 'A♦|' + indexCount +' ';
+  indexCount++;
+  for (var i = 2; i <= 10; i++) {
+      s = s + i + '♦|' + indexCount +' ';
+      indexCount++;
+  }
+  s = s + 'J♦|' + indexCount +' ';
+  indexCount++;
+  s = s + 'Q♦|' + indexCount +' ';
+  indexCount++;
+  s = s + 'K♦|' + indexCount +' ';
+  indexCount++;
 
-    s = s + String.fromCharCode('1F0CA');
-    s = s + String.fromCharCode('1F0CB');
-    s = s + String.fromCharCode('1F0CC');
-    s = s + String.fromCharCode('1F0CD');
-    s = s + String.fromCharCode('1F0CE');
+  s = s + 'A♥|' + indexCount;
+  indexCount++;
+  for (var i = 2; i <= 10; i++) {
+      s = s + i + '♥|' + indexCount +' ';
+      indexCount++;
+  }
+  s = s + 'J♥|' + indexCount + ' ';
+  indexCount++;
+  s = s + 'Q♥|' + indexCount + ' ';
+  indexCount++;
+  s = s + 'K♥|' + indexCount + ' ';
+  indexCount++;
 
-    for (var i = 1; i < 10; i++) {
-        s = s + String.fromCharCode('1F0F' + i);
-    }
+  s = s + 'A♠|' + indexCount + ' ';
+  indexCount++;
+  for (var i = 2; i <= 10; i++) {
+      s = s + i + '♠|' + indexCount +' ';
+      indexCount++;
+  }
+  s = s + 'J♠|' + indexCount + ' ';
+  indexCount++;
+  s = s + 'Q♠|' + indexCount + ' ';
+  indexCount++;
+  s = s + 'K♠|' + indexCount;
+  indexCount++;
+  
+  var startIndex = s.indexOf(value) + value.length + 1;
+  var endIndex = startIndex + 2;
+  result = Number(s.slice(startIndex, endIndex));
 
-    s = s + String.fromCharCode('1F0FA');
-    s = s + String.fromCharCode('1F0FB');
-    s = s + String.fromCharCode('1F0FC');
-    s = s + String.fromCharCode('1F0FD');
-    s = s + String.fromCharCode('1F0FE');
-
-    for (var i = 1; i < 10; i++) {
-        s = s + String.fromCharCode('1F0A' + i);
-    }
-
-    s = s + String.fromCharCode('1F0AA');
-    s = s + String.fromCharCode('1F0AB');
-    s = s + String.fromCharCode('1F0AC');
-    s = s + String.fromCharCode('1F0AD');
-    s = s + String.fromCharCode('1F0AE');
-
-    return s.indexOf(value);
+  return result;
 }
 
 
