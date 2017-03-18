@@ -129,7 +129,7 @@ function angleBetweenClockHands(date) {
    var angle = Math.abs(hourHandAngl - minuteHandAngl) > 180 ? 360 - Math.abs(hourHandAngl - minuteHandAngl) : Math.abs(hourHandAngl - minuteHandAngl);
 
    Number.prototype.toRad = function() {
-     return this * Math.PI/180;
+     return this * Math.PI / 180;
    }
 
    return angle.toRad();
