@@ -85,11 +85,23 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-   var timeStampsD = startDate.valueOf();
-   var timeStampeD = endDate.valueOf();
-   var devide = timeStampeD - timeStampsD;
-   var res = devide / 1000 / 60 / 60;
-   return res.toString();
+   var timeStampS = startDate.valueOf();
+   var timeStampE = endDate.valueOf();
+   var devide = timeStampE - timeStampS;
+   var hoursDiv = devide / 3600000;
+   var hours = Math.floor(hoursDiv);
+   var minutesDiv = 60 * (hoursDiv - hours);
+   var minutes = Math.floor(minutesDiv);
+   var secondsDiv = 60 * (minutesDiv - minutes);
+   var seconds = Math.floor(secondsDiv);
+   var millisecondsDiv = 1000 * (secondsDiv - seconds);
+   var milliseconds = Math.floor(millisecondsDiv);
+
+   var result = (hours.toString().length === 1 ? '0' + hours : hours) + ':' +
+                  (minutes.toString().length === 1 ? '0' + minutes : minutes) + ':' +
+                  (seconds.toString().length === 1 ? '0' + seconds : seconds) + '.' +
+                  (milliseconds.toString().length === 1 ? '00' + milliseconds : milliseconds.toString().length === 2 ? '0' + milliseconds : milliseconds);
+   return result;
 }
 
 
@@ -107,7 +119,20 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
 function angleBetweenClockHands(date) {
-    throw new Error('Not implemented');
+   var normalDate = new Date(date);
+   var hours = normalDate.getUTCHours() > 12 ? normalDate.getUTCHours() - 12 : normalDate.getUTCHours();
+   var minutes = normalDate.getUTCMinutes();
+
+   var hourHandAngl = 0.5 * (60 * hours + minutes);
+   var minuteHandAngl = 6 * minutes;
+
+   var angle = Math.abs(hourHandAngl - minuteHandAngl) > 180 ? 360 - Math.abs(hourHandAngl - minuteHandAngl) : Math.abs(hourHandAngl - minuteHandAngl);
+
+   Number.prototype.toRad = function() {
+     return this * Math.PI/180;
+   }
+
+   return angle.toRad();
 }
 
 
